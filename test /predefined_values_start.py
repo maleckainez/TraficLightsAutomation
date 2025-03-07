@@ -9,8 +9,8 @@ yellow_duration = 3  # standard value of the duration of the yellow light
 input_values = [length_of_cycle, duration_green, intergreen_cycle, yellow_red_duration, yellow_duration]
 
 inpt = int(input(f"What would you to debug? \n"
-                    f"1 Calculate the values and plot \n"
-                    f"2 Only draw module \n"))
+                 f"1 Calculate the values and plot \n"
+                 f"2 Only draw module \n"))
 if inpt == 1:
     cm.calculate(input_values)
 elif inpt == 2:

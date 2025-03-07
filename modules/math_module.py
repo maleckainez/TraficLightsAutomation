@@ -35,7 +35,7 @@ def draw(values):
     fig.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
 
     barheight = 20 * 0.0393700787  # 2mm to inches
-    for i, start_time in zip([1, 0], [0, values[5]]):  # from 0 to the half of the cycle K1, o=fron half of the cycle K2
+    for i, start_time in zip([1, 0], [0, values[5]]):  # from 0 to the half of the cycle K1, from half of the cycle K2
         y_axis = i
         # draw green light
         ax.barh(y_axis, values[1], left=start_time, height=barheight, color='green', edgecolor='black')
@@ -53,18 +53,20 @@ def draw(values):
             ax.barh(y_axis, values[7], height=barheight, left=start_time - values[5], color='red', edgecolor='black')
             ax.barh(y_axis, values[3], height=barheight, left=start_time - values[3], color='orange', edgecolor='black')
 
-    ax.set_yticks([0,1])
+    ax.set_yticks([0, 1])
     ax.set_yticklabels(["K 1", "K 2"])
     ax.tick_params(axis="y", length=0)
     ax.set_xticks(np.arange(0, values[0] + 1, 1))  # Skala co sekundę
     ax.set_xlim(0, values[0])
     ax.set_xlabel("")
     ax.tick_params(axis="x", labelsize=8)
-    def custom_xtick(x, pos):
+
+    def custom_xtick(x):
         if x % 5 == 0:
             return f'{int(x)}'
         else:
             return ''
+
     ax.xaxis.set_major_formatter(plt.FuncFormatter(custom_xtick))
     plt.tight_layout()
     ax.set_axisbelow(True)
