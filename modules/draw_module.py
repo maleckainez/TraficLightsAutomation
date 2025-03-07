@@ -2,19 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-# [length_of_cycle, duration_green, intergreen_cycle, yellow_red_duration, yellow_duration]
-
-def calculate(values):
-    k_duration = values[0] / 2  # duration of cycle for one light
-    k_short_red = values[2] - values[4]  # duration of red between yellows
-    k_long_red = values[1] + values[2] - values[3]  # duration of red during kull K cycle
-    values.extend([k_duration, k_short_red, k_long_red])
-    if all(value > 0 for value in values):
-        draw_method_choice(values)
-    else:
-        print("theres problem here")
-
-
 def draw_method_choice(values):
     inpt = int(input("enter 1 for color, 2 for black and white: \n"))
     if inpt == 1 or inpt == 2:
@@ -61,7 +48,7 @@ def draw(values):
     ax.set_xlabel("")
     ax.tick_params(axis="x", labelsize=8)
 
-    def custom_xtick(x):
+    def custom_xtick(x, pos): # DO NOT REMOVE pos ARGUMENT (don't know why)
         if x % 5 == 0:
             return f'{int(x)}'
         else:

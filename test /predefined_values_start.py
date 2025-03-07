@@ -1,4 +1,5 @@
-from modules import math_module as cm
+from modules import calculate_module as cm
+from modules import draw_module as dm
 
 length_of_cycle = 64  # sample input of the length of the cycle
 duration_green = 18  # sample input of the duration of the green light
@@ -14,6 +15,6 @@ inpt = int(input(f"What would you to debug? \n"
 if inpt == 1:
     cm.calculate(input_values)
 elif inpt == 2:
-    cm.draw(input_values)
+    dm.draw(input_values)
 else:
     print("wrong input")
