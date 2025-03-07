@@ -20,7 +20,7 @@ def draw(values):
     ax.spines['left'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
 
-    fig.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
+    #fig.subplots_adjust(left=0.05, right=0.15, top=0.95, bottom=0.05)
 
     barheight = 15 * 0.0393700787  # 2mm to inches
     for i, start_time in zip([1, 0], [0, values[5]]):  # from 0 to the half of the cycle K1, from half of the cycle K2
@@ -56,7 +56,7 @@ def draw(values):
                     color='black')
 
     ax.set_yticks([0, 1])
-    ax.set_yticklabels(["K 1", "K 2"])
+    ax.set_yticklabels(["K 2", "K 1"])
     ax.tick_params(axis="y", length=0)
     ax.set_xticks(np.arange(0, values[0] + 1, 1))  # Skala co sekundę
     ax.set_xlim(0, values[0])

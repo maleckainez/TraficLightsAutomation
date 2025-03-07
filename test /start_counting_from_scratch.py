@@ -1,13 +1,13 @@
 from modules import calculate_module as cm
 
 # Define the velocity (km/h)
-velocity = 40
+velocity = 30
 # Define the distance (m)
-distance = 250
+distance = 204
 # Define the width of the road (m)
 width = 3
 # Define an average traffic
-sdr = 5000
+sdr = 4800
 # Define the typical vehicle length (m)
 vehicle_length = 10
 # Define the yellow time (s)
