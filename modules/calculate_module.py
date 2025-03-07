@@ -1,28 +1,54 @@
 from modules import draw_module as dm
-
+import math as m
 
 def calculate(input_values):
     # [0] velocity, [1] distance, [2] width, [3] sdr, [4] vehicle_length, [5] yellow_time, [6] red_yellow_time
     velocity_mph = input_values[0] * 0.2778
     lane_saturation_intensity = input_values[2] * 525
-    evacuation_time = (input_values[1] + input_values[4]) / velocity_mph
-    intergreen_time = input_values[5] + evacuation_time
+    evacuation_time = m.ceil((input_values[1] + input_values[4]) / velocity_mph)
+    intergreen_time = m.ceil(input_values[5] + evacuation_time)
     lane_saturation_levels = (0.1 * input_values[3]) / lane_saturation_intensity
     lane_saturation_levels_sum = lane_saturation_levels * 2
-    lost_time = 2 * (intergreen_time - 1)
-    minimal_cycle_duration = lost_time / (1 - lane_saturation_levels_sum)
-    optimal_cycle_duration = (1.5 * lost_time + 5) / (1 - lane_saturation_levels)
-    minimal_green_cycle = 0.5 * (minimal_cycle_duration - lost_time) - 1
-    optimal_green_cycle = 0.5 * (optimal_cycle_duration - lost_time) - 1
-    calculated_min_values = [minimal_cycle_duration, minimal_green_cycle, intergreen_time, input_values[6],
-                             input_values[5]]
-    calculated_opt_values = [optimal_cycle_duration, optimal_green_cycle, intergreen_time, input_values[6],
-                             input_values[5]]
-    print("Minimal values: ", calculated_min_values)
-    print("Optimal values: ", calculated_opt_values)
+    lost_time = m.ceil(2 * (intergreen_time - 1))
+    minimal_cycle_duration = m.ceil(lost_time / (1 - lane_saturation_levels_sum))
+    optimal_cycle_duration = m.ceil((1.5 * lost_time + 5) / (1 - lane_saturation_levels_sum))
+    minimal_green_cycle = m.ceil(0.5 * (minimal_cycle_duration - lost_time) - 1)
+    optimal_green_cycle = m.ceil(0.5 * (optimal_cycle_duration - lost_time) - 1)
+    suboptimal_cycle_duration = m.ceil((minimal_cycle_duration + optimal_cycle_duration)/2)
+    suboptimal_green_cycle = m.ceil((minimal_green_cycle + optimal_green_cycle)/2)
+
+    # Create the list of the values
+    standard_calc_values = [intergreen_time, input_values[6], input_values[5]]
+    calculated_min_values = [minimal_cycle_duration, minimal_green_cycle]
+    calculated_min_values.extend(standard_calc_values)
+    calculated_subopt_values = [suboptimal_cycle_duration, suboptimal_green_cycle]
+    calculated_subopt_values.extend(standard_calc_values)
+    calculated_opt_values = [optimal_cycle_duration, optimal_green_cycle]
+    calculated_opt_values.extend(standard_calc_values)
+
+    print(f"Standard values: \n"
+          f"Velocity: {velocity_mph} m/s\n"
+          f"Lane saturation intensity: {lane_saturation_intensity}\n"
+          f"Evacuation time: {evacuation_time} s\n"
+          f"Intergreen time: {intergreen_time} s\n"
+          f"Lane saturation levels: {lane_saturation_levels}\n"
+          f"Lane saturation levels sum: {lane_saturation_levels_sum}\n"
+          f"Lost time: {lost_time} s\n")
+    print(f"Minimal values: \n"
+          f"Minimal cycle duration: {minimal_cycle_duration} s\n"
+          f"Minimal green cycle: {minimal_green_cycle} s\n")
+    print(f"Suboptimal values: \n"
+          f"Suboptimal cycle duration: {suboptimal_cycle_duration} s\n"
+          f"Suboptimal green cycle: {suboptimal_green_cycle} s\n")
+    print(f"Optimal values: \n"
+          f"Optimal cycle duration: {optimal_cycle_duration} s\n"
+          f"Optimal green cycle: {optimal_green_cycle} s\n")
+
     calculate_extras(calculated_min_values)
+    calculate_extras(calculated_subopt_values)
     calculate_extras(calculated_opt_values)
 
+    print(calculated_opt_values)
 # [length_of_cycle, duration_green, intergreen_cycle, yellow_red_duration, yellow_duration]
 
 def calculate_extras(values):
