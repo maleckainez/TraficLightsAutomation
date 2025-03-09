@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def draw_method_choice(values):
-    inpt = int(input("enter 1 for color, 2 for black and white: \n"))
+def draw_method_choice(values, inpt):
+
     colors = ['red', 'green', 'yellow']
     colors_bw = ['white', 'white', 'white']
     if inpt == 1:
@@ -41,7 +41,8 @@ def draw_bars(ax, values, barheight, colors):
         # draw yellow light
         ax.barh(y_axis, values[4], left=start_time + values[1], height=barheight,
                 color=colors[2], edgecolor='black')
-        ax.plot([start_time + values[1], start_time + values[1] + values[4]], [y_axis - barheight * 0.5, y_axis + barheight * 0.5], color= 'black')
+        ax.plot([start_time + values[1], start_time + values[1] + values[4]],
+                [y_axis - barheight * 0.5, y_axis + barheight * 0.5], color='black')
         ax.text(start_time + values[1] + values[4] / 2, y_axis + barheight / 2,
                 f'{values[4]}s', ha='center', va='bottom', color='black')
 
@@ -53,7 +54,6 @@ def draw_bars(ax, values, barheight, colors):
                 ha='center', va='bottom', color='black')
         ax.plot([start_time + values[1] + values[4], start_time + values[1] + values[4] + values[6]],
                 [y_axis, y_axis], color='black')
-
 
         # draw long red and red-yellow
         if start_time == 0:
@@ -127,7 +127,7 @@ def format_axes(ax, values):
     ax.tick_params(axis="y", length=0)
 
     ax.set_xticks(np.arange(0, values[0] + 1, 1))
-    ax.set_xlim(0, values[0] + 1)
+    ax.set_xlim(0, values[0] + 0.1)
     ax.set_xlabel("")
     ax.tick_params(axis="x", labelsize=8)
 
