@@ -20,7 +20,7 @@ def draw_method_choice(values, inpt):
 
 def setup_figure_and_axes():
     """Create figure and axes with hidden spines."""
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(10, 5), dpi=600)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_visible(False)
@@ -141,7 +141,7 @@ def format_axes(ax, values):
     plt.tight_layout()
     ax.set_axisbelow(True)
     ax.set_title("")
-    ax.grid(axis="x", linestyle="--", alpha=0.7, linewidth=0.5)
+    ax.grid(axis="x", linestyle="-", alpha=0.7, linewidth=0.5)
 
 
 def draw(values, colors):
