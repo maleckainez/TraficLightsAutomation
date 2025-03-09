@@ -119,6 +119,9 @@ def draw_bars(ax, values, barheight, colors):
                     y_axis + barheight / 2, f'{values[3]}s',
                     ha='center', va='bottom', color='black')
 
+def draw_intergreen_dsc(ax, values, barheight):
+    """Draw the """
+    pass
 
 def format_axes(ax, values):
     """Configure y-ticks, x-ticks, grid, and labels."""
@@ -131,7 +134,7 @@ def format_axes(ax, values):
     ax.set_xlabel("")
     ax.tick_params(axis="x", labelsize=8)
 
-    def custom_xtick(x, pos):  # DO NOT REMOVE pos ARGUMENT
+    def custom_xtick(x, pos):  # DO NOT REMOVE pos ARGUMENT (don't know why, but it's crucial)
         if x % 10 == 0 or x == values[0]:
             return f'{int(x)}'
         else:

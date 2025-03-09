@@ -3,9 +3,9 @@ from modules import calculate_module as cm
 # Define the velocity (km/h)
 velocity = 40
 # Define the distance (m)
-distance = 250
+distance = 100
 # Define the width of the road (m)
-width = 3
+width = 3.5
 # Define an average traffic
 sdr = 4860
 # Define the typical vehicle length (m)
